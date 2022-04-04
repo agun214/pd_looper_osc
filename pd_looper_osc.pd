@@ -1,0 +1,1054 @@
+#N canvas 176 177 1018 625 12;
+#X obj 52 304 vu 43 120 threshhold_vu thresh 6 148 0 10 #404040 #000000
+1 0;
+#X obj 12 301 cnv 15 50 133 empty empty empty 20 12 0 14 #000000 #404040
+0;
+#X obj 87 301 cnv 15 50 133 empty empty empty 20 12 0 14 #000000 #404040
+0;
+#X obj 399 304 vu 21 120 \$0-volume-loop empty -1 -8 0 10 #404040 #000000
+1 0;
+#N canvas 53 93 1102 625 mididrum 0;
+#X obj 44 570 midiout 1;
+#X msg 54 287 64 64 137;
+#X obj 45 466 unpack f f f;
+#X floatatom 44 519 5 0 0 0 - - -, f 5;
+#X obj 45 33 r \$0-drum-thing-midi;
+#X msg 45 256 96 \$1 153;
+#X obj 309 34 r parsedOSC;
+#X msg 77 414 \$2 \$1 153;
+#X obj 302 352 pack;
+#X obj 225 50 vsl 15 128 0 1 0 0 empty \$0-midi_volume midi_volume
+0 -9 0 10 #fcfcfc #000000 #0c751e 0 1;
+#X obj 224 217 i;
+#X floatatom 224 246 5 0 0 0 - - -, f 5;
+#X obj 306 89 sel 1;
+#X obj 366 89 sel 1;
+#X obj 426 89 sel 1;
+#X obj 485 89 sel 1;
+#X msg 306 118 36;
+#X msg 366 118 38;
+#X obj 302 430 unpack;
+#X floatatom 302 459 5 0 0 0 - - -, f 5;
+#X floatatom 332 459 5 0 0 0 - - -, f 5;
+#X obj 225 192 * 127;
+#N canvas 443 70 638 625 progchange 0;
+#X obj 438 41 inlet;
+#X floatatom 438 129 5 0 0 0 - - -, f 5;
+#X obj 424 190 v \$0-progmchang;
+#X obj 498 416 v \$0-progmchang;
+#X obj 438 155 t b f;
+#X obj 438 230 +;
+#X obj 498 363 moses 0;
+#X obj 498 390 moses 128;
+#X msg 438 100 -0.5;
+#X obj 438 72 sel 0 1;
+#X msg 492 100 0.5;
+#X obj 237 547 s udpOUT2;
+#X obj 195 290 + 1;
+#X obj 166 202 bng 40 250 50 0 empty empty empty 17 7 0 10 #fcfcfc
+#000000 #000000;
+#X obj 166 165 r \$0-drum-pgmchg-midi;
+#X obj 45 165 tgl 15 0 empty empty empty 17 7 0 10 #fcfcfc #000000
+#000000 0 1;
+#X msg 65 111 clear;
+#X msg 84 165 0;
+#X obj 45 193 metro 50;
+#X obj 45 138 pipe 500;
+#X obj 45 85 sel 0;
+#X obj 45 55 r \$0-drum-pgmchg-midi-hold;
+#X msg 39 445 0;
+#X floatatom 39 480 5 0 0 0 - - -, f 5;
+#X obj 237 413 tosym;
+#X symbolatom 237 492 7 0 0 0 - - -, f 7;
+#X obj 237 359 moses 100;
+#X obj 297 387 - 100;
+#X obj 297 411 tosym;
+#X msg 297 437 1\$1;
+#X obj 297 463 t s;
+#X obj 499 497 v \$0-progmchang;
+#X msg 75 446 127;
+#X text 226 589 program change: touchOSC label;
+#X text 35 589 program change: out;
+#X text 42 6 program change:;
+#X text 335 6 program change: variable;
+#X msg 237 519 \$1 2 drum_programchange;
+#X floatatom 338 70 5 0 0 0 - - -, f 5;
+#X msg 316 113 65;
+#X floatatom 162 436 5 0 0 0 - - -, f 5;
+#X floatatom 162 369 5 0 0 0 - - -, f 5;
+#X obj 39 393 sel 127.5 -0.5;
+#X obj 63 537 v \$0-progmchang;
+#X obj 39 508 i;
+#X obj 39 567 pgmout 10;
+#X floatatom 359 295 5 0 0 0 - - -, f 5;
+#X obj 164 292 f;
+#X connect 0 0 9 0;
+#X connect 0 0 38 0;
+#X connect 1 0 4 0;
+#X connect 2 0 5 0;
+#X connect 4 0 2 0;
+#X connect 4 1 5 1;
+#X connect 5 0 47 0;
+#X connect 5 0 46 0;
+#X connect 6 1 7 0;
+#X connect 7 0 3 0;
+#X connect 8 0 1 0;
+#X connect 9 0 8 0;
+#X connect 9 1 10 0;
+#X connect 10 0 1 0;
+#X connect 12 0 47 1;
+#X connect 13 0 47 0;
+#X connect 14 0 13 0;
+#X connect 15 0 18 0;
+#X connect 16 0 19 0;
+#X connect 17 0 15 0;
+#X connect 18 0 13 0;
+#X connect 19 0 15 0;
+#X connect 20 0 16 0;
+#X connect 20 0 17 0;
+#X connect 20 1 19 0;
+#X connect 21 0 20 0;
+#X connect 22 0 23 0;
+#X connect 23 0 44 0;
+#X connect 23 0 43 0;
+#X connect 24 0 25 0;
+#X connect 25 0 37 0;
+#X connect 26 0 24 0;
+#X connect 26 1 27 0;
+#X connect 27 0 28 0;
+#X connect 28 0 29 0;
+#X connect 29 0 30 0;
+#X connect 30 0 25 0;
+#X connect 32 0 23 0;
+#X connect 37 0 11 0;
+#X connect 39 0 2 0;
+#X connect 42 0 22 0;
+#X connect 42 1 32 0;
+#X connect 42 2 23 0;
+#X connect 42 2 40 0;
+#X connect 44 0 45 0;
+#X connect 47 0 12 0;
+#X connect 47 0 26 0;
+#X connect 47 0 41 0;
+#X connect 47 0 42 0;
+#X restore 1026 102 pd progchange;
+#X obj 546 89 sel 1;
+#X obj 605 89 sel 1;
+#X obj 665 89 sel 1;
+#X obj 726 89 sel 1;
+#X obj 306 61 route push10 push11 push12 push13 push14 push15 push16
+push17 push18 push19 push120 push21 encoder4, f 112;
+#X obj 786 89 sel 1;
+#X obj 846 89 sel 1;
+#X obj 906 89 sel 1;
+#X obj 966 89 sel 1;
+#X msg 426 118 49;
+#X msg 485 118 51;
+#X msg 546 118 42;
+#X msg 665 118 44;
+#X msg 726 118 53;
+#X msg 605 118 46;
+#X msg 786 118 47;
+#X msg 846 118 45;
+#X msg 906 118 43;
+#X msg 966 118 41;
+#X connect 1 0 2 0;
+#X connect 2 0 3 0;
+#X connect 2 1 3 0;
+#X connect 2 2 3 0;
+#X connect 3 0 0 0;
+#X connect 4 0 5 0;
+#X connect 5 0 2 0;
+#X connect 6 0 27 0;
+#X connect 7 0 2 0;
+#X connect 8 0 7 0;
+#X connect 8 0 18 0;
+#X connect 9 0 21 0;
+#X connect 10 0 11 0;
+#X connect 10 0 8 1;
+#X connect 12 0 16 0;
+#X connect 13 0 17 0;
+#X connect 14 0 32 0;
+#X connect 15 0 33 0;
+#X connect 16 0 8 0;
+#X connect 17 0 8 0;
+#X connect 18 0 19 0;
+#X connect 18 1 20 0;
+#X connect 21 0 10 0;
+#X connect 23 0 34 0;
+#X connect 24 0 37 0;
+#X connect 25 0 35 0;
+#X connect 26 0 36 0;
+#X connect 27 0 12 0;
+#X connect 27 1 13 0;
+#X connect 27 2 14 0;
+#X connect 27 3 15 0;
+#X connect 27 4 23 0;
+#X connect 27 5 24 0;
+#X connect 27 6 25 0;
+#X connect 27 7 26 0;
+#X connect 27 8 28 0;
+#X connect 27 9 29 0;
+#X connect 27 10 30 0;
+#X connect 27 11 31 0;
+#X connect 27 12 22 0;
+#X connect 28 0 38 0;
+#X connect 29 0 39 0;
+#X connect 30 0 40 0;
+#X connect 31 0 41 0;
+#X connect 32 0 8 0;
+#X connect 33 0 8 0;
+#X connect 34 0 8 0;
+#X connect 35 0 8 0;
+#X connect 36 0 8 0;
+#X connect 37 0 8 0;
+#X connect 38 0 8 0;
+#X connect 39 0 8 0;
+#X connect 40 0 8 0;
+#X connect 41 0 8 0;
+#X restore 3 158 pd mididrum;
+#X obj 598 19 netOSC2222;
+#N canvas 459 70 638 625 phone-osc 0;
+#X obj 42 -11 vsl 15 128 0 1 0 0 \$0-volume-out-fader empty volume-out-fader
+-20 146 0 10 #fcfcfc #000000 #000000 0 1;
+#X obj 42 -145 r parsedOSC;
+#X obj 206 -1 tgl 46 0 looper_tgl empty looper_tgl 17 7 0 10 #fcfcfc
+#000000 #000000 0 1;
+#X obj 85 -22 vsl 15 128 0 1 0 0 \$0-midi_volume empty midi_volume
+-12 138 0 10 #fcfcfc #000000 #000000 0 1;
+#X obj 123 -6 tgl 46 0 empty empty empty 17 7 0 10 #fcfcfc #000000
+#000000 0 1;
+#N canvas 374 70 906 650 multipushes 0;
+#X obj 33 15 inlet;
+#X floatatom 117 153 3 0 0 0 - - -, f 3;
+#X obj 33 94 unpack s s f, f 13;
+#X obj 33 114 sym2f;
+#X obj 77 114 sym2f;
+#X floatatom 33 153 5 0 0 0 - - -, f 5;
+#X floatatom 77 153 5 0 0 0 - - -, f 5;
+#X floatatom 234 154 3 0 0 0 - - -, f 3;
+#X obj 150 95 unpack s s f, f 13;
+#X obj 150 115 sym2f;
+#X obj 194 115 sym2f;
+#X floatatom 150 154 5 0 0 0 - - -, f 5;
+#X floatatom 194 154 5 0 0 0 - - -, f 5;
+#X obj 583 284 s udpOUT2;
+#X msg 552 231 \$1 2 led2;
+#X msg 629 115 stuffVHAMNGE;
+#X obj 629 144 t s;
+#X msg 651 206 \$1 3 label25;
+#X msg 631 173 \$1 3 label23;
+#X msg 652 246 \$1 3 label24;
+#N canvas 642 70 638 650 multifaders 0;
+#X obj 43 23 inlet;
+#X floatatom 117 154 3 0 0 0 - - -, f 3;
+#X obj 43 115 sym2f;
+#X floatatom 53 154 5 0 0 0 - - -, f 5;
+#X obj 43 90 unpack s f, f 13;
+#X obj 43 186 pack;
+#X obj 43 210 route 1 2 3, f 14;
+#X obj 22 441 hsl 32 15 0 1 0 0 \$0-pan1 \$0-pan1_osc pan1 42 7 0 10
+#fcfcfc #000000 #000000 0 1;
+#X obj 23 384 hsl 32 15 0 1 0 0 \$0-fx1_osc empty Effects_Send 34 4
+0 10 #fcfcfc #000000 #000000 0 1;
+#X obj 23 404 hsl 32 15 0 1 0 0 \$0-fx1_filter_osc empty Filter 40
+6 0 10 #fcfcfc #000000 #000000 0 1;
+#X obj 23 423 hsl 32 15 0 1 0 0 \$0-fx1_pshift_osc empty Pitch_Shift
+40 9 0 10 #fcfcfc #000000 #000000 0 1;
+#X floatatom 264 185 3 0 0 0 - - -, f 3;
+#X obj 190 146 sym2f;
+#X floatatom 200 185 5 0 0 0 - - -, f 5;
+#X obj 190 121 unpack s f, f 13;
+#X obj 190 217 pack;
+#X obj 183 266 route 1 2 3, f 14;
+#X floatatom 419 263 3 0 0 0 - - -, f 3;
+#X obj 345 224 sym2f;
+#X floatatom 355 263 5 0 0 0 - - -, f 5;
+#X obj 345 199 unpack s f, f 13;
+#X obj 345 295 pack;
+#X obj 345 319 route 1 2 3, f 14;
+#X obj 145 440 hsl 32 15 0 1 0 0 \$0-pan2 empty empty -24 8 0 10 #fcfcfc
+#000000 #000000 0 1;
+#X obj 145 383 hsl 32 15 0 1 0 0 \$0-fx2_osc empty empty -2 -8 0 10
+#fcfcfc #000000 #000000 0 1;
+#X obj 145 403 hsl 32 15 0 1 0 0 \$0-fx2_filter_osc empty empty -2
+-8 0 10 #fcfcfc #000000 #000000 0 1;
+#X obj 144 422 hsl 32 15 0 1 0 0 \$0-fx2_pshift_osc empty empty -22
+11 0 10 #fcfcfc #000000 #000000 0 1;
+#X obj 309 448 hsl 32 15 0 1 0 0 \$0-panloop_1 empty empty -2 -8 0
+10 #fcfcfc #000000 #000000 0 1;
+#X obj 306 388 hsl 32 15 0 1 0 0 \$0-fxloop_osc empty empty -2 -8 0
+10 #fcfcfc #000000 #000000 0 1;
+#X obj 308 411 hsl 32 15 0 1 0 0 \$0-fxloop_filter_osc empty empty
+-2 -8 0 10 #fcfcfc #000000 #000000 0 1;
+#X obj 306 430 hsl 32 15 0 1 0 0 \$0-fxloop_pshift_osc empty empty
+-2 -8 0 10 #fcfcfc #000000 #000000 0 1;
+#X obj 598 118 vsl 31 123 0 1 0 0 \$0-fxValue_osc empty Effects_Return
+-20 -14 0 10 #fcfcfc #000000 #000000 0 1;
+#X obj 469 122 vsl 31 123 0 1 0 0 \$0-fx_filter_Value_osc empty Filter
+-1 -14 0 10 #fcfcfc #000000 #000000 12200 1;
+#X obj 515 122 vsl 31 123 0 1 0 0 \$0-fx_pshift_Value_osc empty Pitch_Shift
+-20 -14 0 10 #fcfcfc #000000 #000000 12200 1;
+#X obj 556 128 vsl 31 123 0 1 0 0 \$0-fx_pshift_Value_osc_2 empty Pitch_Shift_2
+-20 -14 0 10 #fcfcfc #000000 #000000 12200 1;
+#X obj 103 49 route multifader5 multifader6 multifader7 fader33 fader35
+fader36 filter_level pshift_level fx_level pshift_level_2;
+#X connect 0 0 35 0;
+#X connect 2 0 3 0;
+#X connect 2 0 5 0;
+#X connect 4 0 2 0;
+#X connect 4 1 1 0;
+#X connect 4 1 5 1;
+#X connect 5 0 6 0;
+#X connect 6 0 8 0;
+#X connect 6 1 9 0;
+#X connect 6 2 10 0;
+#X connect 12 0 13 0;
+#X connect 12 0 15 0;
+#X connect 14 0 12 0;
+#X connect 14 1 11 0;
+#X connect 14 1 15 1;
+#X connect 15 0 16 0;
+#X connect 16 0 24 0;
+#X connect 16 1 25 0;
+#X connect 16 2 26 0;
+#X connect 18 0 19 0;
+#X connect 18 0 21 0;
+#X connect 20 0 18 0;
+#X connect 20 1 17 0;
+#X connect 20 1 21 1;
+#X connect 21 0 22 0;
+#X connect 22 0 28 0;
+#X connect 22 1 29 0;
+#X connect 22 2 30 0;
+#X connect 35 0 4 0;
+#X connect 35 1 14 0;
+#X connect 35 2 20 0;
+#X connect 35 3 7 0;
+#X connect 35 4 23 0;
+#X connect 35 5 27 0;
+#X connect 35 6 32 0;
+#X connect 35 7 33 0;
+#X connect 35 8 31 0;
+#X connect 35 9 34 0;
+#X restore 429 114 pd multifaders;
+#N canvas 0 189 450 363 subdivider 0;
+#X obj 65 -7 inlet;
+#X floatatom 162 78 3 0 0 0 - - -, f 3;
+#X obj 62 60 unpack s s f, f 13;
+#X obj 62 80 sym2f;
+#X obj 106 80 sym2f;
+#X floatatom 250 226 5 0 0 3 looptime_select - looptime_select, f
+5;
+#X obj 63 203 s eighth_offset;
+#X obj 61 26 route z;
+#X obj 249 183 + 0;
+#X obj 62 139 - 1;
+#X obj 316 6 inlet;
+#X floatatom 409 88 3 0 0 0 - - -, f 3;
+#X obj 321 45 unpack s s f, f 13;
+#X obj 309 90 sym2f;
+#X obj 353 90 sym2f;
+#X floatatom 220 44 5 0 0 0 - - -, f 5;
+#X floatatom 353 119 5 0 0 0 - - -, f 5;
+#X obj 309 119 - 1;
+#X connect 0 0 7 0;
+#X connect 2 0 3 0;
+#X connect 2 1 4 0;
+#X connect 2 2 1 0;
+#X connect 3 0 9 0;
+#X connect 4 0 8 0;
+#X connect 7 1 2 0;
+#X connect 8 0 5 0;
+#X connect 9 0 6 0;
+#X connect 10 0 12 0;
+#X connect 12 0 13 0;
+#X connect 12 1 14 0;
+#X connect 12 2 11 0;
+#X connect 13 0 15 0;
+#X connect 13 0 17 0;
+#X connect 14 0 16 0;
+#X connect 17 0 8 1;
+#X restore 308 116 pd subdivider;
+#N canvas 804 105 450 325 pshiftgrid 0;
+#X floatatom 119 153 3 0 0 0 - - -, f 3;
+#X obj 35 94 unpack s s f, f 13;
+#X obj 35 114 sym2f;
+#X obj 79 114 sym2f;
+#X floatatom 35 137 5 0 0 0 - - -, f 5;
+#X floatatom 89 243 5 0 0 0 - - -, f 5;
+#X obj 30 275 s \$0-p_shift_amt;
+#X floatatom 51 244 5 0 0 0 - - -, f 5;
+#X obj 35 191 * 5;
+#X obj 35 220 +;
+#X obj 35 165 - 1;
+#X obj 18 20 inlet;
+#X floatatom 295 149 3 0 0 0 - - -, f 3;
+#X obj 211 90 unpack s s f, f 13;
+#X obj 211 110 sym2f;
+#X obj 255 110 sym2f;
+#X floatatom 211 133 5 0 0 0 - - -, f 5;
+#X floatatom 265 239 5 0 0 0 - - -, f 5;
+#X floatatom 227 240 5 0 0 0 - - -, f 5;
+#X obj 211 187 * 5;
+#X obj 211 216 +;
+#X obj 211 161 - 1;
+#X obj 194 16 inlet;
+#X obj 208 270 s \$0-p_shift_amt_2;
+#X connect 1 0 2 0;
+#X connect 1 1 3 0;
+#X connect 1 2 0 0;
+#X connect 2 0 4 0;
+#X connect 3 0 5 0;
+#X connect 3 0 9 1;
+#X connect 4 0 10 0;
+#X connect 8 0 9 0;
+#X connect 9 0 7 0;
+#X connect 9 0 6 0;
+#X connect 10 0 8 0;
+#X connect 11 0 1 0;
+#X connect 13 0 14 0;
+#X connect 13 1 15 0;
+#X connect 13 2 12 0;
+#X connect 14 0 16 0;
+#X connect 15 0 17 0;
+#X connect 15 0 20 1;
+#X connect 16 0 21 0;
+#X connect 19 0 20 0;
+#X connect 20 0 18 0;
+#X connect 20 0 23 0;
+#X connect 21 0 19 0;
+#X connect 22 0 13 0;
+#X restore 214 221 pd pshiftgrid;
+#X obj 93 30 route multipush1 multipush4 pshift1_grid multipush6 pshift2_grid
+subdivider multitoggle2, f 48;
+#X connect 0 0 23 0;
+#X connect 2 0 3 0;
+#X connect 2 1 4 0;
+#X connect 2 2 1 0;
+#X connect 3 0 5 0;
+#X connect 4 0 6 0;
+#X connect 8 0 9 0;
+#X connect 8 1 10 0;
+#X connect 8 2 7 0;
+#X connect 9 0 11 0;
+#X connect 10 0 12 0;
+#X connect 14 0 13 0;
+#X connect 15 0 16 0;
+#X connect 16 0 18 0;
+#X connect 16 0 17 0;
+#X connect 16 0 19 0;
+#X connect 17 0 13 0;
+#X connect 18 0 13 0;
+#X connect 19 0 13 0;
+#X connect 23 0 2 0;
+#X connect 23 1 8 0;
+#X connect 23 2 22 0;
+#X connect 23 4 22 1;
+#X connect 23 5 21 0;
+#X connect 23 6 21 1;
+#X connect 23 7 20 0;
+#X restore 559 -109 pd multipushes;
+#X msg 119 50 \; pd dsp \$1;
+#X obj 442 452 s udpOUT2;
+#X obj 548 451 s udpOUT2-2;
+#X msg 418 390 \$1 2 led2;
+#X msg 488 283 stuffVHAMNGE;
+#X obj 488 312 t s;
+#X obj 418 324 tgl 33 0 empty looper_tgl looper_tgl -5 -8 0 10 #fcfcfc
+#000000 #000000 0 1;
+#X obj 135 188 s \$0-volume_in_L;
+#X obj 114 210 s \$0-volume_in_R;
+#X obj 327 -3 s \$0-xy2;
+#X obj 38 159 vsl 15 128 0 1 0 0 loop_volume-phone empty loop_volume-out
+-20 146 0 10 #fcfcfc #000000 #000000 0 1;
+#X obj 388 62 s record_threshhold;
+#X msg 490 341 \$1 5 label132;
+#X obj 607 275 tgl 65 0 empty empty empty 17 7 0 10 #fcfcfc #000000
+#000000 0 1;
+#X msg 610 349 \$1 5 led1;
+#X obj 110 251 s \$0-volume_in_L2;
+#X obj 89 273 s \$0-volume_in_R2;
+#X obj 366 178 hsl 44 35 0 1 0 0 delay_feedback_ctl empty delay_feedback
+0 47 0 10 #fcfcfc #000000 #000000 0 1;
+#X obj 417 173 s delay_time_ctl;
+#X obj 40 -104 route vol_out vol_midi dsp_tgl loop_rec_tgl loop_rec_tgl_DRUM
+xy1 vol_in_R vol_in_L vol_in_R2 vol_in_L2 xy2 loop_vol_out filter_xcut_yres
+loop_overdub rec_threshhold delay_level delay_time, f 65;
+#X obj 271 113 tgl 27 0 looper_overdub empty looper_overdub 9 37 0
+10 #fcfcfc #000000 #000000 0 1;
+#X connect 1 0 5 0;
+#X connect 1 0 25 0;
+#X connect 4 0 6 0;
+#X connect 9 0 7 0;
+#X connect 10 0 11 0;
+#X connect 11 0 18 0;
+#X connect 12 0 9 0;
+#X connect 18 0 7 0;
+#X connect 19 0 20 0;
+#X connect 20 0 7 0;
+#X connect 25 0 0 0;
+#X connect 25 1 3 0;
+#X connect 25 2 4 0;
+#X connect 25 3 2 0;
+#X connect 25 4 2 0;
+#X connect 25 6 14 0;
+#X connect 25 7 13 0;
+#X connect 25 8 22 0;
+#X connect 25 9 21 0;
+#X connect 25 11 16 0;
+#X connect 25 12 15 0;
+#X connect 25 13 26 0;
+#X connect 25 14 17 0;
+#X connect 25 15 23 0;
+#X connect 25 16 24 0;
+#X restore 3 135 pd phone-osc;
+#X msg 599 -15 192.168.1.15;
+#N canvas 73 393 638 650 \$0-autosave 1;
+#X obj 27 115 tgl 15 0 empty empty empty 17 7 0 10 #fcfcfc #000000
+#000000 1 1;
+#X obj 27 140 metro 1000;
+#X msg 94 92 5;
+#X obj 94 115 * 60000;
+#X obj 27 7 loadbang;
+#X obj 27 62 t b b;
+#X obj 27 36 del 5000;
+#X msg 203 288 pd-\$1.pd;
+#X obj 203 232 t s;
+#X obj 26 359 s;
+#X symbolatom 270 356 19 0 0 0 - - -, f 19;
+#X msg 26 299 menusave;
+#X obj 27 169 t b b;
+#X symbolatom 203 261 17 0 0 0 - - -, f 17;
+#X obj 203 144 r patch_name;
+#X obj 223 174 loadbang;
+#X obj 203 480 shell;
+#X obj 221 515 print git;
+#X obj 203 314 t b s;
+#X obj 203 363 del 200;
+#X msg 203 416 /home/pi/pd_looper_osc/pd_git_updater;
+#X msg 223 200 pd_looper_osc;
+#X connect 0 0 1 0;
+#X connect 1 0 12 0;
+#X connect 2 0 3 0;
+#X connect 3 0 1 1;
+#X connect 4 0 6 0;
+#X connect 5 0 0 0;
+#X connect 5 1 2 0;
+#X connect 6 0 5 0;
+#X connect 7 0 18 0;
+#X connect 8 0 13 0;
+#X connect 11 0 9 0;
+#X connect 12 0 11 0;
+#X connect 12 1 13 0;
+#X connect 13 0 7 0;
+#X connect 14 0 8 0;
+#X connect 15 0 21 0;
+#X connect 16 1 17 0;
+#X connect 18 0 19 0;
+#X connect 18 1 10 0;
+#X connect 18 1 9 1;
+#X connect 19 0 20 0;
+#X connect 20 0 16 0;
+#X connect 21 0 8 0;
+#X restore 3 224 pd \$0-autosave;
+#N canvas 57 613 910 347 mmmixer 1;
+#X obj -4 -182 adc~ 1 2 3 4, f 65;
+#X obj 304 152 throw~ looper_1;
+#X obj 541 156 throw~ fx;
+#X obj 2 405 env~;
+#X obj 3 45 *~, f 2;
+#X obj 18 -3 pow 2;
+#X obj 2 444 - 95;
+#X obj 18 -72 vsl 17 32 0 1 0 0 empty \$0-volume_in_L vol_in_L 2 -12
+0 10 #fcfcfc #000000 #000000 0 1;
+#X obj 2 472 s \$0-volume-in_L;
+#X obj 136 405 env~;
+#X obj 136 45 *~, f 2;
+#X obj 153 -3 pow 2;
+#X obj 136 444 - 95;
+#X obj 136 472 s \$0-volume-in_R;
+#X obj 173 -72 vsl 15 32 0 1 0 0 empty \$0-volume_in_R vol_in_R -4
+-11 0 10 #fcfcfc #000000 #000000 3100 1;
+#X obj 291 405 env~;
+#X obj 291 45 *~, f 2;
+#X obj 307 -3 pow 2;
+#X obj 291 444 - 95;
+#X obj 307 -60 vsl 15 32 0 1 0 0 empty \$0-volume_in_L2 vol_in_L2 -4
+-11 0 10 #fcfcfc #000000 #000000 3100 1;
+#X obj 291 472 s \$0-volume-in_L2;
+#X obj 447 405 env~;
+#X obj 446 45 *~, f 2;
+#X obj 447 444 - 95;
+#X obj 701 -50 vsl 15 32 0 1 0 0 empty loop_volume-phone loop_volume-phone
+3 -11 0 10 #fcfcfc #000000 #000000 0 1;
+#X obj 447 472 s \$0-volume-in_R2;
+#X obj 660 45 *~;
+#X obj 660 397 env~, f 7;
+#X obj 660 435 - 95;
+#X obj 654 -102 loop15_frtho;
+#X obj 462 8 pow 2;
+#X obj 462 -49 vsl 15 32 0 1 0 0 empty \$0-volume_in_R2 vol_in_R2 -4
+-11 0 10 #fcfcfc #000000 #000000 3100 1;
+#X obj 1312 86 tgl 62 0 empty empty empty 17 7 0 10 #fcfcfc #000000
+#000000 1 1;
+#X obj 1282 278 max;
+#X msg 1311 221 0, f 1;
+#X obj 1312 31 loadbang;
+#X msg 1312 58 1;
+#X obj 1310 390 s udpOUT2;
+#X obj 1353 270 i;
+#X obj 1311 158 metro 777;
+#X msg 1310 358 \$1 1 rec_threshhold_poll;
+#X obj 1310 323 i;
+#X obj 1311 190 t b b;
+#X obj 918 408 env~;
+#X obj 918 107 *~, f 2;
+#X obj 918 437 - 95;
+#X obj 918 -72 catch~ master_L;
+#X obj 1092 -73 catch~ master_R;
+#X obj 1095 107 *~, f 2;
+#X obj 918 466 s \$0-VU_master;
+#X obj 918 376 +~;
+#X obj 1194 -59 r \$0-volume-out-fader;
+#X obj 979 212 dac~;
+#X obj 1225 -24 r \$0-volume-out-pedal;
+#X floatatom 1112 39 5 0 0 0 - - -, f 5;
+#X obj 661 470 s loop_volume-out;
+#X obj 15 159 max~;
+#X obj 16 203 max~;
+#X obj 58 159 max~;
+#X obj 16 232 env~;
+#X obj 16 261 s volume-in_env;
+#X obj 651 -158 catch~ looper_1;
+#X connect 0 0 4 0;
+#X connect 0 1 10 0;
+#X connect 0 2 16 0;
+#X connect 0 3 22 0;
+#X connect 3 0 6 0;
+#X connect 4 0 3 0;
+#X connect 4 0 2 0;
+#X connect 4 0 1 0;
+#X connect 4 0 56 0;
+#X connect 5 0 4 1;
+#X connect 6 0 8 0;
+#X connect 7 0 5 0;
+#X connect 9 0 12 0;
+#X connect 10 0 9 0;
+#X connect 10 0 2 0;
+#X connect 10 0 1 0;
+#X connect 10 0 56 1;
+#X connect 11 0 10 1;
+#X connect 12 0 13 0;
+#X connect 14 0 11 0;
+#X connect 15 0 18 0;
+#X connect 16 0 15 0;
+#X connect 16 0 2 0;
+#X connect 16 0 1 0;
+#X connect 16 0 58 0;
+#X connect 17 0 16 1;
+#X connect 18 0 20 0;
+#X connect 19 0 17 0;
+#X connect 21 0 23 0;
+#X connect 22 0 21 0;
+#X connect 22 0 2 0;
+#X connect 22 0 1 0;
+#X connect 22 0 58 1;
+#X connect 23 0 25 0;
+#X connect 24 0 26 1;
+#X connect 26 0 27 0;
+#X connect 26 0 2 0;
+#X connect 27 0 28 0;
+#X connect 28 0 55 0;
+#X connect 29 0 26 0;
+#X connect 30 0 22 1;
+#X connect 31 0 30 0;
+#X connect 32 0 39 0;
+#X connect 33 0 38 0;
+#X connect 34 0 33 1;
+#X connect 34 0 33 0;
+#X connect 35 0 36 0;
+#X connect 36 0 32 0;
+#X connect 38 0 33 1;
+#X connect 38 0 41 1;
+#X connect 39 0 42 0;
+#X connect 40 0 37 0;
+#X connect 41 0 40 0;
+#X connect 42 0 34 0;
+#X connect 42 1 41 0;
+#X connect 43 0 45 0;
+#X connect 43 0 33 0;
+#X connect 44 0 50 0;
+#X connect 44 0 52 0;
+#X connect 45 0 49 0;
+#X connect 46 0 44 0;
+#X connect 47 0 48 0;
+#X connect 48 0 50 1;
+#X connect 48 0 52 1;
+#X connect 50 0 43 0;
+#X connect 51 0 54 0;
+#X connect 53 0 54 0;
+#X connect 54 0 44 1;
+#X connect 54 0 48 1;
+#X connect 56 0 57 0;
+#X connect 57 0 59 0;
+#X connect 58 0 57 1;
+#X connect 59 0 60 0;
+#X connect 61 0 29 0;
+#X restore 3 70 pd mmmixer;
+#X obj 136 131 tgl 63 0 empty \$0-delaypedal_tgl delay 16 70 0 10 #fcfcfc
+#000000 #000000 0 1;
+#X obj 207 131 tgl 66 0 empty \$0-p_shifter_tgl p_shifter 2 74 0 10
+#fcfcfc #000000 #000000 1 1;
+#X obj 279 131 tgl 63 0 empty \$0-filter_tgl filter 5 79 0 10 #fcfcfc
+#000000 #000000 1 1;
+#X obj 207 13 tgl 66 0 empty \$0-p_shifter_tgl_2 p_shifter_2 1 73 0
+10 #fcfcfc #000000 #000000 1 1;
+#X obj -1 481 hsl 50 20 0 1 0 0 \$0-pan1 \$0-pan1_osc pan1 15 6 0 10
+#fcfcfc #000000 #000000 0 1;
+#X obj 507 304 vu 30 160 \$0-VU_master Master_Volume -21 178 0 10 #404040
+#000000 1 0;
+#X obj 107 481 hsl 32 15 0 1 0 0 \$0-pan2 empty empty -24 8 0 10 #fcfcfc
+#000000 #000000 0 1;
+#X obj 101 304 vsl 18 123 0 1 0 0 empty \$0-volume_in_R vox_R -10 -9
+0 10 #fcfcfc #000000 #000000 12200 1;
+#X obj 746 308 vsl 31 123 0 1 0 0 \$0-fxValue \$0-fxValue_osc Effects_Return
+-20 -14 0 10 #fcfcfc #000000 #000000 0 1;
+#X obj 0 304 vsl 14 123 0 1 0 0 empty \$0-volume_in_L bass_L -4 -15
+0 10 #fcfcfc #000000 #000000 0 1;
+#X obj 616 314 vsl 31 123 0 1 0 0 \$0-fx_filter_Value \$0-fx_filter_Value_osc
+Filter -1 -14 0 10 #fcfcfc #000000 #000000 12200 1;
+#X obj 662 314 vsl 31 123 0 1 0 0 \$0-fx_pshift_Value \$0-fx_pshift_Value_osc
+Pitch_Shift -2 -30 0 10 #fcfcfc #000000 #000000 12200 1;
+#X obj 475 304 vsl 42 160 0 1 0 0 empty \$0-volume-out-fader empty
+0 -9 0 10 #fcfcfc #000000 #000000 0 1;
+#X obj 705 313 vsl 31 123 0 1 0 0 \$0-fx_pshift_Value_2 \$0-fx_pshift_Value_osc_2
+Pitch_Shift_2 -24 -15 0 10 #fcfcfc #000000 #000000 12200 1;
+#X obj 517 -19 tgl 54 0 empty looper_tgl looper_tgl -5 -8 0 10 #fcfcfc
+#000000 #000000 0 1;
+#N canvas 73 70 638 650 fx 0;
+#X obj 190 -546 catch~ fx;
+#X obj 205 126 rev2~ 100 85 3000 20;
+#X obj 205 155 *~, f 2;
+#X obj 241 155 *~, f 2;
+#X floatatom 370 136 5 0 0 0 - #0-fxValue -, f 5;
+#X obj 104 236 throw~ master_L;
+#X obj 239 236 throw~ master_R;
+#X obj 162 -447 spigot~;
+#X obj 155 97 spigot~;
+#X obj 611 -399 hradio 15 0 0 26 empty \$0-p_shift_amt p_shift_amt
+0 -8 0 10 #fcfcfc #000000 #000000 5;
+#X floatatom 660 -328 5 0 0 2 p_shift_inv - #0-p_shift_amt_inv, f
+5;
+#X obj 166 -369 fx_pshift;
+#X floatatom 236 -392 5 0 0 0 - #0-fx_pshift_Value -, f 5;
+#X obj 288 -398 spigot~;
+#X obj 334 -369 fx_pshift;
+#X obj 704 -353 hradio 15 0 0 26 empty \$0-p_shift_amt_2 p_shift_amt_2
+0 -8 0 10 #fcfcfc #000000 #000000 21;
+#X floatatom 364 -396 3 0 0 2 p_shift_inv2 #0-p_shift_amt_inv2 -,
+f 3;
+#X floatatom 393 -398 5 0 0 0 - #0-fx_pshift_Value_2 -, f 5;
+#X obj 145 -317 +~;
+#X obj 611 -369 - 13;
+#X obj 812 -322 - 13;
+#X floatatom 196 -392 5 0 0 2 p_shift_inv #0-p_shift_amt_inv -, f
+5;
+#X floatatom 817 -294 5 0 0 2 p_shift_inv2 - #0-p_shift_amt_inv2,
+f 5;
+#N canvas 482 130 793 650 fx_resfilter 0;
+#X obj 200 337 bob~;
+#X floatatom 461 220 5 0 200 0 - - -, f 5;
+#X obj 461 242 / 25;
+#X floatatom 244 126 5 0 150 0 - - -, f 5;
+#X obj 244 148 mtof;
+#X obj 245 193 pack 0 50;
+#X obj 245 218 line~;
+#X floatatom 244 171 7 0 0 0 - - -, f 7;
+#X text 452 15 "resonance";
+#X text 451 32 (>4 to oscillate);
+#X text 509 238 scaled to 0-8;
+#X text 508 220 0-200 control;
+#X text 216 33 resonant or cutoff frequency, f 16;
+#X text 236 -11 ----- filter parameters ----;
+#X obj 461 169 loadbang;
+#X msg 461 194 10;
+#X obj 460 270 line~;
+#X obj 244 77 loadbang;
+#X msg 244 102 40;
+#X floatatom 406 239 5 0 0 0 - - -, f 5;
+#X obj 71 30 r \$0-filter_cutoff;
+#X floatatom 141 60 5 0 0 0 - - -, f 5;
+#X obj 650 39 r \$0-xy2, f 10;
+#X obj 628 80 unpack;
+#X floatatom 590 140 5 0 0 0 - - -, f 5;
+#X floatatom 637 140 6 0 0 0 - - -, f 6;
+#X obj 154 141 * 1;
+#X obj 15 212 catch~ fx_filter;
+#X obj 200 409 *~;
+#X floatatom 219 380 5 0 0 1 filter_Value #0-fx_filter_Value -, f
+5;
+#X floatatom 153 183 9 0 0 0 - - -, f 9;
+#X obj 200 452 outlet~;
+#X obj 178 77 t b f;
+#X connect 0 0 28 0;
+#X connect 1 0 2 0;
+#X connect 2 0 16 0;
+#X connect 2 0 19 0;
+#X connect 3 0 4 0;
+#X connect 4 0 7 0;
+#X connect 5 0 6 0;
+#X connect 6 0 0 1;
+#X connect 7 0 5 0;
+#X connect 14 0 15 0;
+#X connect 15 0 1 0;
+#X connect 16 0 0 2;
+#X connect 17 0 18 0;
+#X connect 18 0 3 0;
+#X connect 20 0 21 0;
+#X connect 20 0 26 0;
+#X connect 22 0 23 0;
+#X connect 23 0 24 0;
+#X connect 23 0 32 0;
+#X connect 23 1 25 0;
+#X connect 23 1 16 0;
+#X connect 26 0 7 0;
+#X connect 26 0 30 0;
+#X connect 27 0 0 0;
+#X connect 28 0 31 0;
+#X connect 29 0 28 1;
+#X connect 32 0 26 0;
+#X connect 32 1 26 1;
+#X restore 189 -169 pd fx_resfilter;
+#X obj 186 -189 throw~ fx_filter;
+#X obj 141 -228 spigot~;
+#X obj 191 -280 tgl 36 0 empty \$0-filter_tgl filter 37 17 0 24 #fcfcfc
+#000000 #000000 1 1;
+#X obj 138 -65 spigot~;
+#N canvas 591 120 638 650 delaypedal 0;
+#X obj 60 -562 inlet~;
+#X floatatom 132 -316 4 0 999 0 - - -, f 4;
+#X text 417 -316 <-- delay time;
+#X text 476 -283 read from delay line;
+#X obj 132 -283 delread~ delay1;
+#X obj 132 -431 loadbang;
+#X text 139 -513 write to delay line;
+#X obj 60 -255 +~;
+#X obj 132 -477 delwrite~ delay1 1000;
+#X text 524 -316 (msec);
+#N canvas 376 376 842 650 notes_delay 0;
+#X text 6 40 You can delay a signal using the [delwrite~] and [delread~]
+objects. In this example \, a sample loops continuously and is added
+to a delayed copy of itself.;
+#X text 6 112 The [delwrite~] object creates the delay line \; you
+give it a name and a size in milliseconds. Each [delwrite~] should
+have a different name.;
+#X text 6 174 [delread~]'s arguments are the name of a [delwrite~]
+(of which there should be exactly one) and an optional delay time in
+milliseconds between 0 and the length of the delay line. Each [delwrite~]
+may have as many [delread~]s as you wish \, which can then function
+as multiple delay taps.;
+#X text 5 267 The [delread~] object always delays the signal an integer
+number of samples and does no interpolation.;
+#X restore 476 -236 pd notes_delay;
+#X msg 132 -401 1000;
+#X obj 60 -226 outlet~;
+#X obj 277 -400 hsl 128 15 0 127 0 0 empty delay_time_ctl delay_time
+-2 -8 0 10 #fcfcfc #000000 #000000 4 1;
+#X obj 155 -119 s~ delay_feedback;
+#X obj 351 -512 r~ delay_feedback;
+#X obj 352 -478 env~;
+#X floatatom 352 -449 5 0 0 0 - - -, f 5;
+#X obj 155 -155 *~;
+#X obj 174 -177 hsl 128 15 0 1 0 0 empty delay_feedback_ctl feedback
+-2 -8 0 10 #fcfcfc #000000 #000000 0 1;
+#X floatatom 347 -376 5 0 0 0 - - -, f 5;
+#X obj 227 -367 * 600;
+#X connect 0 0 8 0;
+#X connect 0 0 7 0;
+#X connect 1 0 4 0;
+#X connect 4 0 7 1;
+#X connect 4 0 18 0;
+#X connect 5 0 11 0;
+#X connect 7 0 12 0;
+#X connect 11 0 1 0;
+#X connect 13 0 20 0;
+#X connect 13 0 21 0;
+#X connect 15 0 16 0;
+#X connect 15 0 8 0;
+#X connect 16 0 17 0;
+#X connect 18 0 14 0;
+#X connect 19 0 18 1;
+#X connect 21 0 1 0;
+#X restore 184 -3 pd delaypedal;
+#X obj 184 -107 tgl 36 0 empty \$0-delaypedal_tgl delay 37 17 0 24
+#fcfcfc #000000 #000000 0 1;
+#X obj 201 56 tgl 36 0 empty \$0-reverb_tgl reverb 37 17 0 24 #fcfcfc
+#000000 #000000 0 1;
+#X obj 367 -465 tgl 36 0 empty \$0-p_shifter_tgl_2 pshifter_2 37 17
+0 24 #fcfcfc #000000 #000000 1 1;
+#X obj 367 -504 tgl 36 0 empty \$0-p_shifter_tgl pshifter_1 32 20 0
+24 #fcfcfc #000000 #000000 1 1;
+#X obj 360 -547 tgl 36 0 empty \$0-p_shifter_tgl_bypass mute 37 17
+0 24 #fcfcfc #000000 #000000 0 1;
+#X obj 58 -433 spigot~;
+#X connect 0 0 7 0;
+#X connect 0 0 13 0;
+#X connect 0 0 34 0;
+#X connect 1 0 2 0;
+#X connect 1 1 3 0;
+#X connect 2 0 5 0;
+#X connect 3 0 6 0;
+#X connect 4 0 3 1;
+#X connect 4 0 2 1;
+#X connect 7 1 11 0;
+#X connect 8 0 6 0;
+#X connect 8 0 5 0;
+#X connect 8 1 1 0;
+#X connect 9 0 19 0;
+#X connect 11 0 18 1;
+#X connect 12 0 11 2;
+#X connect 13 1 14 0;
+#X connect 14 0 18 1;
+#X connect 15 0 20 0;
+#X connect 16 0 14 1;
+#X connect 17 0 14 2;
+#X connect 18 0 25 0;
+#X connect 19 0 10 0;
+#X connect 20 0 22 0;
+#X connect 21 0 11 1;
+#X connect 23 0 27 0;
+#X connect 25 0 27 0;
+#X connect 25 1 24 0;
+#X connect 26 0 25 1;
+#X connect 27 0 8 0;
+#X connect 27 1 28 0;
+#X connect 28 0 8 0;
+#X connect 29 0 27 1;
+#X connect 30 0 8 1;
+#X connect 31 0 13 1;
+#X connect 32 0 7 1;
+#X connect 33 0 34 1;
+#X connect 34 0 18 0;
+#X restore 25 27 pd fx;
+#X obj 215 304 vu 15 120 \$0-volume-in_L2 vol-in_L2 -9 134 0 8 #404040
+#000000 1 0;
+#X obj 298 304 vu 15 120 \$0-volume-in_R2 vol-in_R2 -7 135 0 8 #404040
+#000000 1 0;
+#X obj 17 304 vu 15 120 \$0-volume-in_L vol-in_L -1 138 0 8 #404040
+#000000 1 0;
+#X obj 123 304 vu 15 120 \$0-volume-in_R vol-in_R -6 136 0 8 #404040
+#000000 1 0;
+#X obj 278 304 vsl 18 123 0 1 0 0 empty \$0-volume_in_R2 drum_R -10
+-9 0 10 #fcfcfc #000000 #000000 12200 1;
+#X obj 198 304 vsl 14 123 0 1 0 0 empty \$0-volume_in_L2 drum_L -4
+-15 0 10 #fcfcfc #000000 #000000 12200 1;
+#X obj 365 304 vsl 35 119 0 1 0 0 empty loop_volume-out loop_vol -10
+-9 0 10 #fcfcfc #000000 #000000 0 1;
+#X obj 136 13 tgl 66 0 empty \$0-reverb_tgl reverb 16 74 0 10 #fcfcfc
+#000000 #000000 0 1;
+#X obj 278 13 tgl 66 0 empty \$0-p_shifter_tgl_bypass mute 4 76 0 10
+#fcfcfc #000000 #000000 0 1;
+#X obj 351 14 tgl 63 0 empty KR_key_7 7 29 74 0 10 #fcfcfc #000000
+#000000 0 1;
+#X obj 402 20 vsl 52 182 0 1 0 0 empty \$0-volume-out-pedal volume
+10 193 0 10 #fcfcfc #000000 #000000 0 1;
+#X obj 459 20 vsl 52 182 0 1 0 0 empty expression_pedal_gui expression
+-1 195 0 10 #fcfcfc #000000 #000000 15303 1;
+#X obj 517 20 vsl 52 182 0 1 0 0 empty looper_tgl looper 10 193 0 10
+#fcfcfc #000000 #000000 0 1;
+#N canvas 411 70 638 650 kontrolrig 0;
+#X obj 10 277 s \$0-volume-out-pedal;
+#X floatatom 12 106 15 0 0 0 - - -, f 15;
+#X obj 10 75 r volume_pedal;
+#X floatatom 252 102 15 0 0 0 - - -, f 15;
+#X obj 211 77 r expression_pedal;
+#X obj 429 63 r sustain_pedal;
+#X obj 429 161 sel 1;
+#X obj 429 190 tgl 18 0 empty empty empty 17 7 0 10 #fcfcfc #000000
+#000000 0 1;
+#X obj 429 131 change;
+#X obj 16 348 tgl 15 0 empty empty empty 17 7 0 10 #fcfcfc #000000
+#000000 0 1;
+#X obj 16 326 r KR_key_1;
+#X obj 163 326 r KR_key_2;
+#X obj 333 326 r KR_key_3;
+#X obj 16 433 r KR_key_4;
+#X obj 163 432 r KR_key_5;
+#X obj 333 431 r KR_key_6;
+#X obj 493 325 r KR_key_7;
+#X obj 333 460 tgl 15 0 empty empty empty 17 7 0 10 #fcfcfc #000000
+#000000 1 1;
+#X obj 333 355 tgl 15 0 empty empty empty 17 7 0 10 #fcfcfc #000000
+#000000 0 1;
+#X obj 163 355 tgl 15 0 empty empty empty 17 7 0 10 #fcfcfc #000000
+#000000 1 1;
+#X obj 493 355 tgl 15 0 empty empty empty 17 7 0 10 #fcfcfc #000000
+#000000 0 1;
+#X obj 163 461 tgl 15 0 empty empty empty 17 7 0 10 #fcfcfc #000000
+#000000 1 1;
+#X obj 16 472 tgl 15 0 empty empty empty 17 7 0 10 #fcfcfc #000000
+#000000 0 1;
+#X obj 163 495 s \$0-p_shifter_tgl;
+#X obj 163 379 s \$0-p_shifter_tgl_2;
+#X obj 429 281 s looper_tgl;
+#X obj 222 217 s \$0-filter_cutoff;
+#X obj 50 194 moses 0;
+#X obj 50 223 moses 1;
+#X obj 50 129 - 285;
+#X obj 10 193 t b;
+#X msg 10 222 0, f 1;
+#X obj 49 159 / 2300;
+#X obj 116 192 t b;
+#X msg 116 222 1, f 1;
+#X obj 211 136 / 4096;
+#X obj 519 102 / 2700;
+#X obj 429 102 <= 100;
+#X obj 211 275 s expression_pedal_gui;
+#X obj 441 251 s udpOUT2;
+#X msg 440 225 \$1 1 loop_rec_tgl_DRUM;
+#X obj 333 493 s \$0-filter_tgl;
+#X obj 16 382 s \$0-reverb_tgl;
+#X obj 16 495 s \$0-delaypedal_tgl;
+#X obj 333 389 s \$0-p_shifter_tgl_bypass;
+#X obj 33 19 kontrolrig_2;
+#X connect 2 0 1 0;
+#X connect 2 0 29 0;
+#X connect 4 0 3 0;
+#X connect 4 0 35 0;
+#X connect 4 0 26 0;
+#X connect 5 0 37 0;
+#X connect 6 0 7 0;
+#X connect 7 0 25 0;
+#X connect 7 0 40 0;
+#X connect 8 0 6 0;
+#X connect 9 0 42 0;
+#X connect 10 0 9 0;
+#X connect 11 0 19 0;
+#X connect 12 0 18 0;
+#X connect 13 0 22 0;
+#X connect 14 0 21 0;
+#X connect 15 0 17 0;
+#X connect 16 0 20 0;
+#X connect 17 0 41 0;
+#X connect 18 0 44 0;
+#X connect 19 0 24 0;
+#X connect 21 0 23 0;
+#X connect 22 0 43 0;
+#X connect 27 0 30 0;
+#X connect 27 1 28 0;
+#X connect 28 0 0 0;
+#X connect 28 1 33 0;
+#X connect 29 0 32 0;
+#X connect 30 0 31 0;
+#X connect 31 0 0 0;
+#X connect 32 0 27 0;
+#X connect 33 0 34 0;
+#X connect 34 0 0 0;
+#X connect 35 0 38 0;
+#X connect 37 0 8 0;
+#X connect 40 0 39 0;
+#X restore 3 94 pd kontrolrig;
+#X obj 602 -45 loadbang;
+#X connect 7 0 5 0;
+#X connect 40 0 7 0;
