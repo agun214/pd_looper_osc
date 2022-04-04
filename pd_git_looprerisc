@@ -1,0 +1,7 @@
+echo "# pd_looper_osc" x>> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/agun214/pd_looper_osc.git
+git push -u origin main
